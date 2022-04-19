@@ -7,6 +7,7 @@ from win32com.client import Dispatch, gencache
 import LDefin2D
 import time
 import MiscellaneousHelpers as MH
+from tkinter import *
 
 #  Подключим константы API Компас
 kompas6_constants = gencache.EnsureModule("{75C9F5D0-B5B8-4526-8681-9903C567D2ED}", 0, 1, 0).constants
@@ -147,6 +148,28 @@ iTextItemArray.ksAddArrayItem(-1, iTextItemParam)
 iTextLineParam.SetTextItemArr(iTextItemArray)
 
 iStamp.ksTextLine(iTextLineParam)
+iStamp.ksColumnNumber(113)
+
+iTextLineParam = kompas6_api5_module.ksTextLineParam(kompas_object.GetParamStruct(kompas6_constants.ko_TextLineParam))
+iTextLineParam.Init()
+iTextLineParam.style = 32768
+iTextItemArray = kompas_object.GetDynamicArray(LDefin2D.TEXT_ITEM_ARR)
+iTextItemParam = kompas6_api5_module.ksTextItemParam(kompas_object.GetParamStruct(kompas6_constants.ko_TextItemParam))
+iTextItemParam.Init()
+iTextItemParam.iSNumb = 0
+iTextItemParam.s = "Уфрутов"
+iTextItemParam.type = 0
+iTextItemFont = kompas6_api5_module.ksTextItemFont(iTextItemParam.GetItemFont())
+iTextItemFont.Init()
+iTextItemFont.bitVector = 4096
+iTextItemFont.color = 0
+iTextItemFont.fontName = "GOST type A"
+iTextItemFont.height = 3.5
+iTextItemFont.ksu = 1
+iTextItemArray.ksAddArrayItem(-1, iTextItemParam)
+iTextLineParam.SetTextItemArr(iTextItemArray)
+
+iStamp.ksTextLine(iTextLineParam)
 iStamp.ksColumnNumber(114)
 
 iTextLineParam = kompas6_api5_module.ksTextLineParam(kompas_object.GetParamStruct(kompas6_constants.ko_TextLineParam))
@@ -248,11 +271,11 @@ iTextItemArray.ksAddArrayItem(-1, iTextItemParam)
 iTextLineParam.SetTextItemArr(iTextItemArray)
 
 iStamp.ksTextLine(iTextLineParam)
-iStamp.ksColumnNumber(9)
+iStamp.ksColumnNumber(999)
 
 iTextLineParam = kompas6_api5_module.ksTextLineParam(kompas_object.GetParamStruct(kompas6_constants.ko_TextLineParam))
 iTextLineParam.Init()
-iTextLineParam.style = 0
+iTextLineParam.style = 32768
 iTextItemArray = kompas_object.GetDynamicArray(LDefin2D.TEXT_ITEM_ARR)
 iTextItemParam = kompas6_api5_module.ksTextItemParam(kompas_object.GetParamStruct(kompas6_constants.ko_TextItemParam))
 iTextItemParam.Init()
@@ -272,3 +295,6 @@ iTextLineParam.SetTextItemArr(iTextItemArray)
 iStamp.ksTextLine(iTextLineParam)
 iStamp.ksCloseStamp()
 
+win = Tk()
+win.wm_attributes('-topmost',1)
+var = IntVar()

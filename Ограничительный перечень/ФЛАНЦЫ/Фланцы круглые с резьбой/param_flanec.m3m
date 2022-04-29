@@ -30,7 +30,6 @@ MH.iApplication  = application
 # kompas_document_3d = kompas_api7_module.IKompasDocument3D(kompas_document)
 # iDocument3D = kompas_object.ActiveDocument3D()
 
-#Создание в цикле
 #  Создаем новый документ
 for i in range(10):
     i = i + 2

@@ -21,29 +21,19 @@ naim_list = []
 count_list = []
 
 for name in pdf_files:
+    global name1
+    name2 = name.split('.pdf')
+    name_len = len(pdf_files)
+    name1 = name2.pop(0)
+    name = name1.split(' ')
+
     global ob
+    ob = name.pop(0)
+    ob = ob.split('БТЛИ.')
+    ob = ob.pop(1)
+
     global naim
-    # global name
-    global sb
-    name = name.split('.pdf')  # отделяем формат от имени файла
-    name1 = name.pop(0)  # выбираем первый элемент из списка
-    name = name1.split(' ')  # отделяем пробелы
-    ob = name.pop(0)  # выбираем в качестве обозначения первый элемент списка
-    ob = ob.split('БТЛИ.')  # отделяем от обозначения БТЛИ
-    ob = ob.pop(1)  # выбираем второй элемент списка
-    if 'СБ' in name:  # проверка на присутствие СБ в названии
-        # sb = name.pop(1)
-        sb = 'СБ'
-        ob = ob + sb
-        naim = name.pop(1)
-    else:
-        sb = ' '
-        ob = ob
-        naim = name.pop(0)
-    count_big_naim = len(sb)
-    if count_big_naim > 1:
-        global naim2
-        naim2 = " ".join(name)
+    naim = ' '.join(name)
     ob_list.append(ob)  # пополнить список обозначений
     naim_list.append(naim)  # пополнить список наименований
     # чтение PDF

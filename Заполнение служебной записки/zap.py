@@ -3,7 +3,7 @@ import os
 
 import openpyxl
 from PyPDF2 import PdfReader
-from openpyxl.styles import Border, Side
+from openpyxl.styles import Border, Side, Font, Alignment
 
 excel_path = os.getcwd()
 listOfFiles = os.listdir('.')
@@ -52,23 +52,48 @@ ws = wb.active
 ws.title = 'Лист1'
 
 string_number = len(ob_list)
+
 thin_border = Border(left=Side(style='thin'),
                      right=Side(style='thin'),
                      top=Side(style='thin'),
                      bottom=Side(style='thin'))
 
+font = Font(name='Times New Roman',
+            size=12,
+            color='FF000000',
+            bold=False,
+            italic=False,
+            vertAlign=None,
+            underline='none',
+            strike=False)
+
+alignment = Alignment(horizontal='center',
+                      vertical='center',
+                      text_rotation=0,
+                      wrap_text=False,
+                      shrink_to_fit=False,
+                      indent=0)
+
 for row in ob_list:
     ws.cell(row=r, column=10).value = row
     ws.cell(row=r, column=10).border = thin_border
+    ws.cell(row=r, column=10).font = font
+    ws.cell(row=r, column=10).alignment = alignment
     r += 1
     ws.insert_rows(r + 1)
 for row in naim_list:
     ws.cell(row=p, column=11).value = row
     ws.cell(row=p, column=11).border = thin_border
+    ws.cell(row=p, column=11).font = font
+    ws.cell(row=p, column=11).alignment = alignment
     p += 1
 for row in count_list:
     ws.cell(row=k, column=12).value = row
+    ws.cell(row=k, column=12).font = font
+    ws.cell(row=k, column=12).alignment = alignment
     ws.cell(row=k, column=1).value = number
+    ws.cell(row=k, column=1).font = font
+    ws.cell(row=k, column=1).alignment = alignment
     ws.cell(row=k, column=12).border = thin_border
     ws.cell(row=k, column=1).border = thin_border
     ws.cell(row=k, column=6).border = thin_border

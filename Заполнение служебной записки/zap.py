@@ -10,7 +10,7 @@ listOfFiles = os.listdir('.')
 
 pdf_files = [f for f in listOfFiles if f.endswith('.pdf')]
 pdf_files.sort()
-pattern = "*.pdf"
+
 r = p = k = 11
 # p = 11
 l = 0
@@ -21,29 +21,28 @@ naim_list = []
 count_list = []
 
 for name in pdf_files:
-    if fnmatch.fnmatch(name, pattern):
-        global name1
-        name2 = name.split('.pdf')
-        name_len = len(pdf_files)
-        name1 = name2.pop(0)
-        name = name1.split(' ')
+    global name1
+    name2 = name.split('.pdf')
+    name_len = len(pdf_files)
+    name1 = name2.pop(0)
+    name = name1.split(' ')
 
-        global ob
-        ob = name.pop(0)
-        ob = ob.split('БТЛИ.')
-        ob = ob.pop(1)
+    global ob
+    ob = name.pop(0)
+    ob = ob.split('БТЛИ.')
+    ob = ob.pop(1)
 
-        global naim
-        naim = ' '.join(name)
-        ob_list.append(ob)  # пополнить список обозначений
-        naim_list.append(naim)  # пополнить список наименований
-        # чтение PDF
-        reader = PdfReader(pdf_files[l])
-        number_of_pages = len(reader.pages)
-        page = reader.pages[0]
+    global naim
+    naim = ' '.join(name)
+    ob_list.append(ob)  # пополнить список обозначений
+    naim_list.append(naim)  # пополнить список наименований
+    # чтение PDF
+    reader = PdfReader(pdf_files[l])
+    number_of_pages = len(reader.pages)
+    page = reader.pages[0]
 
-        count_list.append(number_of_pages)
-        l += 1
+    count_list.append(number_of_pages)
+    l += 1
 
 wb = openpyxl.load_workbook("Служебная записка на обработку и размножение чертежей.xlsx")
 sheets = wb.sheetnames

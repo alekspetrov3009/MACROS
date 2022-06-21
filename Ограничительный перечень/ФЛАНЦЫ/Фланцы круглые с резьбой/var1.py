@@ -24,6 +24,11 @@ kompas_api7_module = gencache.EnsureModule("{69AC2981-37C0-4379-84FD-5DD2F3C0A52
 application = kompas_api7_module.IApplication(Dispatch("Kompas.Application.7")._oleobj_.QueryInterface(kompas_api7_module.IApplication.CLSID, pythoncom.IID_IDispatch))
 MH.iApplication  = application
 
+# Получим активное приложение
+kompas_api_object = kompas_api7_module.IKompasAPIObject(Dispatch("Kompas.Application.7")._oleobj_.QueryInterface(kompas_api7_module.IKompasAPIObject.CLSID, pythoncom.IID_IDispatch))
+iApplication = kompas_api_object.Application
+iKompasDocument = iApplication.ActiveDocument
+
 #Нахождение пути
 path = path = os.path.dirname(os.path.abspath(__file__)) + "/"
 os.chdir(path)
@@ -33,16 +38,20 @@ for i in range(10):
     i = i + 2
     # Подключение переменных из экселя
     Excel = Dispatch('Excel.Application')
-    book = Excel.Workbooks.open(r"F:\GIT\MACROS\Создание параметрических деталей\БТЛИ.711142 Фланец.xls").ActiveSheet
+    book = Excel.Workbooks.open(r"D:\МАКРОСЫ\Ограничительный перечень\ФЛАНЦЫ\Фланцы круглые с резьбой\БТЛИ.711142 Фланец.xls").ActiveSheet
     listEx=Excel.ActiveSheet
-    d = book.Cells(i,1).value
-    Dvn = book.Cells(i,2).value
-    s = book.Cells(i,3).value
-    d1 = book.Cells(i,4).value
-    n = book.Cells(i,5).value
-    Dmo = book.Cells(i,6).value
-    oboz = listEx.Cells(i,7).value
-    name = listEx.Cells(i,8).value
+    D1 = book.Cells(i,1).value
+    Dnar = book.Cells(i,2).value
+    S = book.Cells(i,3).value
+    Dotv = book.Cells(i,4).value
+    N = book.Cells(i,5).value
+    D2 = book.Cells(i,6).value
+    l2 = book.Cells(i,7).value
+    l1 = book.Cells(i,8).value
+    d = book.Cells(i,9).value
+    shag = book.Cells(i,10).value
+    oboz = listEx.Cells(i,11).value
+    name = listEx.Cells(i,12).value
     file_name = str(oboz + ' ' + name)
 
     #Подключаемся к активной модели
@@ -64,23 +73,35 @@ for i in range(10):
     VariableCollection.refresh()
 
     #Получаем интерфейс переменной по её имени
-    var1 = VariableCollection.GetByName('d',True,True)
-    var1.value = d
+    var1 = VariableCollection.GetByName('D1',True,True)
+    var1.value = D1
     iPart.RebuildModel()# 'А' - имя
-    var2 = VariableCollection.GetByName('Dvn',True,True)
-    var2.value = Dvn
+    var2 = VariableCollection.GetByName('Dnar',True,True)
+    var2.value = Dnar
     iPart.RebuildModel()
-    var3 = VariableCollection.GetByName('s',True,True)
-    var3.value = s
+    var3 = VariableCollection.GetByName('S',True,True)
+    var3.value = S
     iPart.RebuildModel()
-    var4 = VariableCollection.GetByName('d1',True,True)
-    var4.value = d1
+    var4 = VariableCollection.GetByName('Dotv',True,True)
+    var4.value = Dotv
     iPart.RebuildModel()
-    var5 = VariableCollection.GetByName('n',True,True)
-    var5.value = n
+    var5 = VariableCollection.GetByName('N',True,True)
+    var5.value = N
     iPart.RebuildModel()
-    var6 = VariableCollection.GetByName('Dmo',True,True)
-    var6.value = Dmo
+    var6 = VariableCollection.GetByName('D2',True,True)
+    var6.value = D2
+    iPart.RebuildModel()
+    var7 = VariableCollection.GetByName('l2', True, True)
+    var7.value = l2
+    iPart.RebuildModel()
+    var8 = VariableCollection.GetByName('l1', True, True)
+    var8.value = l1
+    iPart.RebuildModel()
+    var9 = VariableCollection.GetByName('d', True, True)
+    var9.value = d
+    iPart.RebuildModel()
+    var10 = VariableCollection.GetByName('shag', True, True)
+    var10.value = shag
     iPart.RebuildModel()
     # #Задаём новое значение переменной
     # var1.value = d
@@ -98,7 +119,22 @@ for i in range(10):
     #Перестраиваем модель
     iPart.RebuildModel()
     print(path)
-
+    # Заполнение обозначения и наименования
+    iPart.marking = oboz
+    iPart.name = name
+    iPart.Update()
     kompas_document.SaveAs(path + file_name + '.m3d')
+
+    # name = iKompasDocument.Name
+    # name = name.split('.m3d')
+    # print(name)
+    # name1 = name.pop(0)
+    # name = name1.split(' ')  # разделитель
+    # ob = name.pop(0)
+    # name = ' '.join(name)
+    # print(ob)
+    # print(name)
+
+
     print(file_name)
 kompas_document.Close(False)

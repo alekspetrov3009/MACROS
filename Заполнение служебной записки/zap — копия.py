@@ -104,12 +104,12 @@ for row in count_list:
     number += 1
 
 ws.merge_cells(start_row=11, start_column=2, end_column=2, end_row=k - 1)
-ws.merge_cells(start_row=11, start_column=3, end_column=3, end_row=k - 1)
-ws.merge_cells(start_row=11, start_column=4, end_column=4, end_row=k - 1)
-ws.merge_cells(start_row=11, start_column=5, end_column=5, end_row=k - 1)
+# ws.merge_cells(start_row=11, start_column=3, end_column=3, end_row=k - 1)
+# ws.merge_cells(start_row=11, start_column=4, end_column=4, end_row=k - 1)
+# ws.merge_cells(start_row=11, start_column=5, end_column=5, end_row=k - 1)
 
 wb.save('Служебная записка на обработку и размножение чертежей.xlsx')
-
+print(k)
 print(count_list)
 print(ob_list)
 print(naim_list)

@@ -33,7 +33,7 @@ for i in range(100):
     i = i + 2
     # Подключение переменных из экселя
     Excel = Dispatch('Excel.Application')
-    book = Excel.Workbooks.open(r"D:\МАКРОСЫ\Ограничительный перечень\ФЛАНЦЫ\Фланцы круглые\БТЛИ.711142 Фланец.xls").ActiveSheet
+    book = Excel.Workbooks.open(r"D:\МАКРОСЫ\Создание параметрических деталей\БТЛИ.711142 Фланец.xls").ActiveSheet
     listEx=Excel.ActiveSheet
     d = book.Cells(i,1).value
     Dvn = book.Cells(i,2).value
@@ -41,9 +41,9 @@ for i in range(100):
     d1 = book.Cells(i,4).value
     n = book.Cells(i,5).value
     Dmo = book.Cells(i,6).value
-    oboz = listEx.Cells(i,7).value
+    obozn = listEx.Cells(i,7).value
     name = listEx.Cells(i,8).value
-    file_name = str(oboz + ' ' + name)
+    file_name = str(obozn + ' ' + name)
 
     #Подключаемся к активной модели
     Documents = application.Documents
@@ -98,6 +98,11 @@ for i in range(100):
     #Перестраиваем модель
     iPart.RebuildModel()
     print(path)
+
+    # Заполнение обозначения и наименования
+    iPart.marking = obozn
+    iPart.name = name
+    iPart.Update()
 
     kompas_document.SaveAs(path + file_name + '.m3d')
     print(file_name)

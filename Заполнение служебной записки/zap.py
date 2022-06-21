@@ -5,6 +5,7 @@ import PyPDF2
 import openpyxl
 from PyPDF2 import PdfReader
 from openpyxl.styles import Border, Side, Font, Alignment
+from openpyxl.worksheet.worksheet import Worksheet
 
 excel_path = os.getcwd()
 listOfFiles = os.listdir('.')
@@ -24,7 +25,7 @@ r = p = k = 11
 # p = 11
 l = 0
 number = 1
-# k = 11
+k = 11
 ob_list = []
 naim_list = []
 count_list = []
@@ -84,75 +85,85 @@ for name in pdf_files:
                     break
 
 print(sizes)
-# wb = openpyxl.load_workbook("Служебная записка на обработку и размножение чертежей.xlsx")
-# sheets = wb.sheetnames
-# sheet_ranges = wb['Лист1']
-# ws = wb.active
-# ws.title = 'Лист1'
-#
-# string_number = len(ob_list)
-#
-# thin_border = Border(left=Side(style='thin'),
-#                      right=Side(style='thin'),
-#                      top=Side(style='thin'),
-#                      bottom=Side(style='thin'))
-#
-# font = Font(name='Times New Roman',
-#             size=12,
-#             color='FF000000',
-#             bold=False,
-#             italic=False,
-#             vertAlign=None,
-#             underline='none',
-#             strike=False)
-#
-# alignment = Alignment(horizontal='center',
-#                       vertical='center',
-#                       text_rotation=0,
-#                       wrap_text=False,
-#                       shrink_to_fit=False,
-#                       indent=0)
-#
-# for row in ob_list:
-#     ws.cell(row=r, column=10).value = row
-#     ws.cell(row=r, column=10).border = thin_border
-#     ws.cell(row=r, column=10).font = font
-#     ws.cell(row=r, column=10).alignment = alignment
-#     r += 1
-#     ws.insert_rows(r + 1)
-# for row in naim_list:
-#     ws.cell(row=p, column=11).value = row
-#     ws.cell(row=p, column=11).border = thin_border
-#     ws.cell(row=p, column=11).font = font
-#     ws.cell(row=p, column=11).alignment = alignment
-#     p += 1
-# for row in count_list:
-#     ws.cell(row=k, column=12).value = row
-#     ws.cell(row=k, column=12).font = font
-#     ws.cell(row=k, column=12).alignment = alignment
-#     ws.cell(row=k, column=1).value = number
-#     ws.cell(row=k, column=1).font = font
-#     ws.cell(row=k, column=1).alignment = alignment
-#     ws.cell(row=k, column=12).border = thin_border
-#     ws.cell(row=k, column=1).border = thin_border
-#     ws.cell(row=k, column=6).border = thin_border
-#     ws.cell(row=k, column=7).border = thin_border
-#     ws.cell(row=k, column=8).border = thin_border
-#     ws.cell(row=k, column=9).border = thin_border
-#     ws.cell(row=k, column=13).border = thin_border
-#     k += 1
-#     number += 1
-#
-# ws.merge_cells(start_row=11, start_column=2, end_column=2, end_row=k - 1)
-# ws.merge_cells(start_row=11, start_column=3, end_column=3, end_row=k - 1)
-# ws.merge_cells(start_row=11, start_column=4, end_column=4, end_row=k - 1)
-# ws.merge_cells(start_row=11, start_column=5, end_column=5, end_row=k - 1)
-#
-# wb.save('Служебная записка на обработку и размножение чертежей.xlsx')
+wb = openpyxl.load_workbook("Служебная записка на обработку и размножение чертежей.xlsx")
+sheets = wb.sheetnames
+sheet_ranges = wb['Лист1']
+ws: Worksheet = wb.active
+ws.title = 'Лист1'
+
+string_number = len(ob_list)
+
+# Параметры стиля ячеек
+thin_border = Border(left=Side(style='thin'),
+                     right=Side(style='thin'),
+                     top=Side(style='thin'),
+                     bottom=Side(style='thin'))
+# Параметры шрифта
+font = Font(name='Times New Roman',
+            size=12,
+            color='FF000000',
+            bold=False,
+            italic=False,
+            vertAlign=None,
+            underline='none',
+            strike=False)
+
+# Параметры выравнивания
+alignment = Alignment(horizontal='center',
+                      vertical='center',
+                      text_rotation=0,
+                      wrap_text=False,
+                      shrink_to_fit=False,
+                      indent=0)
+
+for row in ob_list:
+    ws.cell(row=r, column=10).value = row
+    ws.cell(row=r, column=10).border = thin_border
+    ws.cell(row=r, column=10).font = font
+    ws.cell(row=r, column=10).alignment = alignment
+    r += 1
+    ws.insert_rows(r + 1)
+for row in naim_list:
+    ws.cell(row=p, column=11).value = row
+    ws.cell(row=p, column=11).border = thin_border
+    ws.cell(row=p, column=11).font = font
+    ws.cell(row=p, column=11).alignment = alignment
+    p += 1
+for row in count_list:
+    ws.cell(row=k, column=12).value = row
+    ws.cell(row=k, column=12).font = font
+    ws.cell(row=k, column=12).alignment = alignment
+    ws.cell(row=k, column=12).border = thin_border
+    ws.cell(row=k, column=1).value = number
+    ws.cell(row=k, column=1).font = font
+    ws.cell(row=k, column=1).alignment = alignment
+    ws.cell(row=k, column=1).border = thin_border
+    ws.cell(row=k, column=6).border = thin_border
+    ws.cell(row=k, column=7).border = thin_border
+    ws.cell(row=k, column=8).border = thin_border
+    ws.cell(row=k, column=13).border = thin_border
+#  ввод БТЛИ
+    ws.cell(row=k, column=9).value = 'БТЛИ.'
+    ws.cell(row=k, column=9).font = font
+    ws.cell(row=k, column=9).alignment = alignment
+    ws.cell(row=k, column=9).border = thin_border
+    k += 1
+    number += 1
+
+# Объединить ячейки
+def merge():
+    ws.merge_cells(start_row=11, start_column=2, end_column=2, end_row=k - 1)
+    ws.merge_cells(start_row=11, start_column=3, end_column=3, end_row=k - 1)
+    ws.merge_cells(start_row=11, start_column=4, end_column=4, end_row=k - 1)
+    ws.merge_cells(start_row=11, start_column=5, end_column=5, end_row=k - 1)
+
+
+merge()
+
+wb.save('Служебная записка на обработку и размножение чертежей.xlsx')
 
 print(count_list)
 print(ob_list)
 print(naim_list)
 print(naim)
 print(naim2)
-# print(naim3)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Kompas_signatures</class>
- <widget class="QMainWindow" name="Kompas_signatures">
+ <class>QMainWindow</class>
+ <widget class="QMainWindow" name="QMainWindow">
   <property name="enabled">
    <bool>true</bool>
   </property>

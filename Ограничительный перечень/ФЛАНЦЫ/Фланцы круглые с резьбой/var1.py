@@ -38,7 +38,7 @@ for i in range(10):
     i = i + 2
     # Подключение переменных из экселя
     Excel = Dispatch('Excel.Application')
-    book = Excel.Workbooks.open(r"D:\МАКРОСЫ\Ограничительный перечень\ФЛАНЦЫ\Фланцы круглые с резьбой\БТЛИ.711142 Фланец.xls").ActiveSheet
+    book = Excel.Workbooks.open(r"D:\МАКРОСЫ\Ограничительный перечень\ФЛАНЦЫ\Фланцы круглые с резьбой\БТЛИ.711142.613 Фланец.xls").ActiveSheet
     listEx=Excel.ActiveSheet
     D1 = book.Cells(i,1).value
     Dnar = book.Cells(i,2).value

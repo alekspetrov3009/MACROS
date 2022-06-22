@@ -2,23 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b4fe056-b201-4993-aac3-ffbaf9453c3d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/excel_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/zap — копия.py" beforeDir="false" afterPath="$PROJECT_DIR$/zap — копия.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zap.py" beforeDir="false" afterPath="$PROJECT_DIR$/zap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/БТЛИ.302313.432 СБ Трубопровод.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/БТЛИ.687455.474 Монтаж системы охлаждения.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/БТЛИ.687455.474 СБ Монтаж системы охлаждения.pdf" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/zap_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Служебная записка на обработку и размножение чертежей.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Служебная записка на обработку и размножение чертежей.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Создание параметрических деталей/БТЛИ.711142 Фланец.xls" beforeDir="false" afterPath="$PROJECT_DIR$/../Создание параметрических деталей/БТЛИ.711142 Фланец.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Создание параметрических деталей/Создание круглых фланцев/var1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Создание параметрических деталей/Создание круглых фланцев/var1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ограничительный перечень/ФЛАНЦЫ/Фланцы круглые с резьбой/var1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Ограничительный перечень/ФЛАНЦЫ/Фланцы круглые с резьбой/var1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ограничительный перечень/ФЛАНЦЫ/Фланцы круглые с резьбой/БТЛИ.711142 Фланец.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ограничительный перечень/Шайба А ГОСТ 11371-78/Сборка.a3d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Основная надпись/Main_frame_GUI.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Основная надпись/Main_frame_GUI.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Основная надпись/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Основная надпись/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Основная надпись/mfgui.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Основная надпись/mfgui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,38 +47,17 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PROJECTS\MACROS\Заполнение служебной записки" />
       <recent name="C:\Users\Администратор\Desktop\excel_test" />
       <recent name="C:\Users\Администратор\Desktop\excel_test\333" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.var2">
-    <configuration name="3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="excel_test" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.zap_v2">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="excel_test" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -150,27 +121,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="zap" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="excel_test" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zap.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="zap2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="excel_test" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -192,20 +142,85 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="zap" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="excel_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zap.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="zap_v2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Администратор\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zap_v2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="zap_v22" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Администратор\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zap_v22.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.zap" />
       <item itemvalue="Python.Unnamed" />
-      <item itemvalue="Python.3" />
       <item itemvalue="Python.zap — копия" />
       <item itemvalue="Python.zap2" />
       <item itemvalue="Python.var2" />
+      <item itemvalue="Python.zap_v2" />
+      <item itemvalue="Python.zap_v22" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.zap_v2" />
+        <item itemvalue="Python.zap_v22" />
         <item itemvalue="Python.var2" />
         <item itemvalue="Python.zap2" />
         <item itemvalue="Python.zap — копия" />
-        <item itemvalue="Python.3" />
       </list>
     </recent_temporary>
   </component>

@@ -1,4 +1,5 @@
 import os
+import sys
 import re
 import pythoncom
 from win32com.client import Dispatch, gencache
@@ -7,12 +8,28 @@ from tkinter.filedialog import askopenfilenames
 import openpyxl
 from openpyxl.styles import Border, Side, Font, Alignment
 from openpyxl.worksheet.worksheet import Worksheet
+from openpyxl import Workbook
+import datetime
 import LDefin2D
 import MiscellaneousHelpers as MH
+from openpyxl.styles.numbers import BUILTIN_FORMATS
+
+
+
 
 excel_path = os.getcwd()
-shapka = ['№ п/п', '№ Сл.зап.', 'Дата', 'Тип тр-ра', '№ з/з', 'КТ', 'Дата', 'Инв. №', 'Чертежное обозначение', ' ',
+shapka = ['№ п/п', '№ Сл.зап.', 'Дата', 'Тип тр-ра', '№ з/з', 'КТ', 'Дата', 'Инв. №', 'Чертежное\nобозначение', ' ',
           'Наименование', 'Кол-во листов', 'Формат']
+k = 11  # номер строки
+number = 1  # порядковый номер строки при заполнении
+order_number = '330515/1'               # Номер заказа
+transformer_type = 'ЭОДЦН-8200/10-У3'   # Тип трансформатра
+note_number = '52НН/ /6-646'
+rukov = 'Уфрутов Р.С.'
+ispoln = 'Петров А.И.'
+
+
+
 if __name__ == "__main__":
     root = Tk()
     root.withdraw()  # Скрываем основное окно и сразу окно выбора файлов
@@ -24,14 +41,13 @@ if __name__ == "__main__":
     root.destroy()  # Уничтожаем основное окно
     root.mainloop()
 
-k = 11  # номер строки
-number = 1  # порядковый номер
+# ispoln = input('Введите фамилию и инициалы в формате "Иванов И.И.": ')
+# print('Введите фамилию и инициалы в формате "Иванов И.И.": ')
+# ispoln = sys.stdin.readline()
+# if not ispoln: raise EOFError
 
-wb = openpyxl.load_workbook("Служебная записка на обработку и размножение чертежей.xlsx")
-sheets = wb.sheetnames
-sheet_ranges = wb['Лист1']
-ws: Worksheet = wb.active
-ws.title = 'Лист1'
+excel_file = Workbook()
+ws = excel_file.create_sheet(title='Служебка', index=0)
 
 # Параметры стиля ячеек
 thin_border = Border(left=Side(style='thin'),
@@ -47,12 +63,20 @@ font = Font(name='Times New Roman',
             vertAlign=None,
             underline='none',
             strike=False)
+title_font = Font(name='Times New Roman',
+            size=22,
+            color='FF000000',
+            bold=False,
+            italic=False,
+            vertAlign=None,
+            underline='none',
+            strike=False)
 
 # Параметры выравнивания
 alignment = Alignment(horizontal='center',
                       vertical='center',
                       text_rotation=0,
-                      wrap_text=False,
+                      wrap_text=True,
                       shrink_to_fit=False,
                       indent=0)
 
@@ -142,11 +166,8 @@ for i in filenames:
     k += 1
     number += 1
 
-    # Ввод шаблона
-    # Заведующая архивом
-    ws.cell(row=2, column=11).value = 'Зав. ЦА\n Самохиной А.А.'
-    ws.cell(row=2, column=11).font = font
-    ws.cell(row=2, column=11).alignment = alignment
+
+
     # Ввод номеров столбцов
     for q in range(1, 14):
         ws.cell(row=10, column=q).value = q
@@ -154,14 +175,13 @@ for i in filenames:
         ws.cell(row=10, column=q).alignment = alignment
         ws.cell(row=10, column=q).border = thin_border
 
-
-    e=1
+    e = 1
     for i in shapka:
         ws.cell(row=9, column=e).value = i
         ws.cell(row=9, column=e).font = font
         ws.cell(row=9, column=e).alignment = alignment
         ws.cell(row=9, column=e).border = thin_border
-        e+=1
+        e += 1
 
 
 # Объединить ячейки
@@ -170,9 +190,86 @@ def merge():
     ws.merge_cells(start_row=11, start_column=3, end_column=3, end_row=k - 1)
     ws.merge_cells(start_row=11, start_column=4, end_column=4, end_row=k - 1)
     ws.merge_cells(start_row=11, start_column=5, end_column=5, end_row=k - 1)
+    # Объеденить ячейки 'чертежное обозначение'
+    ws.merge_cells('I9:J9')
+    ws.merge_cells('D4:J7')
+
+#Изменение размеров ячеек
+ws.column_dimensions['A'].width = 5
+ws.column_dimensions['B'].width = 18
+ws.column_dimensions['C'].width = 10
+ws.column_dimensions['D'].width = 25
+ws.column_dimensions['E'].width = 10
+ws.column_dimensions['F'].width = 8
+ws.column_dimensions['G'].width = 10
+ws.column_dimensions['H'].width = 10
+ws.column_dimensions['I'].width = 8
+ws.column_dimensions['J'].width = 18
+ws.column_dimensions['K'].width = 25
+ws.column_dimensions['L'].width = 8
+ws.column_dimensions['M'].width = 10
+
+# Ввод шаблона
+
+# Заведующая архивом
+ws.cell(row=2, column=11).value = 'Зав. ЦА\nСамохиной А.А.'
+ws.cell(row=2, column=11).font = font
+ws.cell(row=2, column=11).alignment = alignment
+ws['D4'].value = 'Служебная записка на обработку\nи размножение чертежей'
+ws['D4'].font = title_font
+ws['D4'].alignment = alignment
+
+# Номер служебной записки
+ws['B11'].value = note_number
+ws['B11'].font = font
+ws['B11'].alignment = alignment
+ws['B11'].border = thin_border
+
+# Текущая дата
+# ws['C11'].value = date
+ws['C11'].value = datetime.datetime.now()
+ws['C11'].font = font
+ws['C11'].alignment = alignment
+ws['C11'].border = thin_border
+ws['C11'].number_format = BUILTIN_FORMATS[14]
+
+# Тип трансформатора
+ws['D11'].value = transformer_type
+ws['D11'].font = font
+ws['D11'].alignment = alignment
+ws['D11'].border = thin_border
+
+# Номер заказа
+ws['E11'].value = order_number
+ws['E11'].font = font
+ws['E11'].alignment = alignment
+ws['E11'].border = thin_border
+
+# Подписи внизу листа
+ws.cell(row=k+5, column=4).value = 'Руководитель группы'
+ws.cell(row=k+5, column=4).font = font
+ws.cell(row=k+5, column=4).alignment = alignment
+
+ws.cell(row=k+7, column=4).value = 'Исполнитель'
+ws.cell(row=k+7, column=4).font = font
+ws.cell(row=k+7, column=4).alignment = alignment
+
+ws.cell(row=k+5, column=10).value = rukov
+ws.cell(row=k+5, column=10).font = font
+ws.cell(row=k+5, column=10).alignment = alignment
+
+ws.cell(row=k+7, column=10).value = ispoln
+ws.cell(row=k+7, column=10).font = font
+ws.cell(row=k+7, column=10).alignment = alignment
+
 merge()
+
+# for cell in ws['A:M']:
+#     cell[0].alignment = alignment
+
 # Закрытие фонового приложения Компаса
 MH.iApplication.Quit()
 
-wb.save('Служебная записка на обработку и размножение чертежей.xlsx')
+# Сохранение эксель файла
+excel_file.save(filename="Служебная записка на обработку и размножение чертежей.xlsx")
 

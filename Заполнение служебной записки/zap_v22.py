@@ -1,72 +1,22 @@
-import os
-import re
-import subprocess
-import pythoncom
-from win32com.client import Dispatch, gencache
-from tkinter import Tk
-from tkinter.filedialog import askopenfilenames
+from openpyxl import Workbook
+import datetime
 
+excel_file = Workbook()
+excel_sheet = excel_file.create_sheet(title='Holidays 2019', index=0)
 
-# Подключение к API7 программы Компас 3D
-def get_kompas_api7():
-    module = gencache.EnsureModule("{69AC2981-37C0-4379-84FD-5DD2F3C0A520}", 0, 1, 0)
-    api = module.IKompasAPIObject(
-        Dispatch("Kompas.Application.7")._oleobj_.QueryInterface(module.IKompasAPIObject.CLSID,
-                                                                 pythoncom.IID_IDispatch))
-    const = gencache.EnsureModule("{75C9F5D0-B5B8-4526-8681-9903C567D2ED}", 0, 1, 0).constants
-    return module, api, const
+# creating header row
+excel_sheet['A1'] = 'Holiday Name'
+excel_sheet['B1'] = 'Holiday Description'
+excel_sheet['C1'] = 'Holiday Date'
 
+# adding data
+excel_sheet['A2'] = 'Diwali'
+excel_sheet['B2'] = 'Biggest Indian Festival'
+excel_sheet['C2'] = datetime.date(year=2019, month=10, day=27).strftime("%m/%d/%y")
 
-def is_running():
-    proc_list = \
-        subprocess.Popen('tasklist /NH /FI "IMAGENAME eq KOMPAS*"', shell=False, stdout=subprocess.PIPE).communicate()[
-            0]
-    return True if proc_list else False
+excel_sheet['A3'] = 'Christmas'
+excel_sheet['B3'] = 'Birth of Jesus Christ'
+excel_sheet['C3'] = datetime.date(year=2019, month=12, day=25).strftime("%m/%d/%y")
 
-
-# Посчитаем количество листов каждого из формата
-def amount_sheet(doc7):
-    sheets = {"A0": 0, "A1": 0, "A2": 0, "A3": 0, "A4": 0, "A5": 0}
-    for sheet in range(doc7.LayoutSheets.Count):
-        format = doc7.LayoutSheets.Item(sheet).Format  # sheet - номер листа, отсчёт начинается от 0
-        sheets["A" + str(format.Format)] += 1 * format.FormatMultiplicity
-    return sheets
-
-
-def parse_design_documents(paths):
-    is_run = is_running()  # True, если программа Компас уже запущена
-
-    module7, api7, const7 = get_kompas_api7()  # Подключаемся к программе
-    app7 = api7.Application  # Получаем основной интерфейс программы
-    app7.Visible = True  # Показываем окно пользователю (если скрыто)
-    app7.HideMessage = const7.ksHideMessageNo  # Отвечаем НЕТ на любые вопросы программы
-
-    table = []  # Создаём таблицу парметров
-    for path in paths:
-        doc7 = app7.Documents.Open(PathName=path,
-                                   Visible=True,
-                                   ReadOnly=True)  # Откроем файл в видимом режиме без права его изменять
-
-        row = amount_sheet(doc7)  # Посчитаем кол-во листов каждого формат
-        row.update(stamp(doc7))  # Читаем основную надпись
-        row.update({
-            "Filename": doc7.Name,  # Имя файла
-            "CountTD": count_demand(doc7, module7),  # Количество пунктов технических требований
-            "CountDim": count_dimension(doc7, module7),  # Количество пунктов технических требований
-        })
-        table.append(row)  # Добавляем строку параметров в таблицу
-
-        doc7.Close(const7.kdDoNotSaveChanges)  # Закроем файл без изменения
-
-    if not is_run: app7.Quit()  # Закрываем программу при необходимости
-    return table
-
-
-if __name__ == "__main__":
-    root = Tk()
-    root.withdraw()  # Скрываем основное окно и сразу окно выбора файлов
-
-    filenames = askopenfilenames(title="Выберети чертежи деталей", filetypes=[('Компас 3D', '*.cdw'), ])
-
-    root.destroy()  # Уничтожаем основное окно
-    root.mainloop()
+# save the file
+excel_file.save(filename="Holidays.xlsx")

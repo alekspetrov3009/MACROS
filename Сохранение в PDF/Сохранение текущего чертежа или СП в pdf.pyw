@@ -19,8 +19,8 @@ iDocument = application.ActiveDocument
 if iDocument:
 
 	if iDocument.DocumentType in (1, 3):
-		# directory = '%s\pdf %s' %(iDocument.Path, time.strftime("%d.%m.%Y"))
-		directory = iDocument.Path
+		directory = '%s\pdf %s' %(iDocument.Path, time.strftime("%d.%m.%Y"))
+
 		if not os.path.exists(directory):
 			os.makedirs(directory)
 

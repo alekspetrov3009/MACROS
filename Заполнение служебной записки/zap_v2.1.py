@@ -1,6 +1,4 @@
 import os
-import sys
-import re
 import pythoncom
 from win32com.client import Dispatch, gencache
 from tkinter import Tk
@@ -14,6 +12,10 @@ import LDefin2D
 import MiscellaneousHelpers as MH
 from openpyxl.styles.numbers import BUILTIN_FORMATS
 
+from tkinter import *
+from tkinter import messagebox
+from tkinter import simpledialog
+from tkinter import ttk
 
 
 
@@ -22,29 +24,29 @@ shapka = ['№ п/п', '№ Сл.зап.', 'Дата', 'Тип тр-ра', '№ 
           'Наименование', 'Кол-во листов', 'Формат']
 k = 11  # номер строки
 number = 1  # порядковый номер строки при заполнении
-order_number = '330515/1'               # Номер заказа
 transformer_type = 'ЭОДЦН-8200/10-У3'   # Тип трансформатра
-note_number = '52НН/ /6-646'
+
 rukov = 'Уфрутов Р.С.'
-ispoln = 'Петров А.И.'
 
 
 
 if __name__ == "__main__":
     root = Tk()
     root.withdraw()  # Скрываем основное окно и сразу окно выбора файлов
-
     filenames = askopenfilenames(title="Выберите чертежи деталей",
                                  filetypes=[('Компас 3D', '*.cdw'), ('Компас 3D', '*.spw')])
     print(filenames)
 
-    root.destroy()  # Уничтожаем основное окно
-    root.mainloop()
+    ispoln = simpledialog.askstring("SL Maker", "Введите фамилию и инициалы", parent=root)                # ФИО исполнителя
+    order_number = simpledialog.askinteger("SL Maker", "Введите номер заказа", parent=root)                # Номер заказа
+    slzap_number = simpledialog.askstring("SL Maker", "Введите номер служебной записки", parent=root)    # Порядковый номер служебной записки
+    note_number = '52НН/'+ slzap_number + '/6-646'
 
-# ispoln = input('Введите фамилию и инициалы в формате "Иванов И.И.": ')
-# print('Введите фамилию и инициалы в формате "Иванов И.И.": ')
-# ispoln = sys.stdin.readline()
-# if not ispoln: raise EOFError
+root.destroy()  # Уничтожаем основное окно
+root.mainloop()
+
+print(ispoln)
+
 
 excel_file = Workbook()
 ws = excel_file.create_sheet(title='Служебка', index=0)
@@ -118,12 +120,12 @@ for i in filenames:
     oboz = oboz.replace('БТЛИ.', '')
     iText = iStamp.Text(32)  # номер ячейки для считывания данных формата листа
     form = iText.Str
+    # iStamp.ksCloseStamp()
 
     print(sheet)
     print(oboz)
     print(naim)
     print(form)
-
 
     # Ввод обозначения
     ws.cell(row=k, column=10).value = oboz
@@ -165,9 +167,6 @@ for i in filenames:
     # Увеличение строк
     k += 1
     number += 1
-
-
-
     # Ввод номеров столбцов
     for q in range(1, 14):
         ws.cell(row=10, column=q).value = q
@@ -208,6 +207,7 @@ ws.column_dimensions['J'].width = 18
 ws.column_dimensions['K'].width = 25
 ws.column_dimensions['L'].width = 8
 ws.column_dimensions['M'].width = 10
+
 
 # Ввод шаблона
 
@@ -263,9 +263,6 @@ ws.cell(row=k+7, column=10).font = font
 ws.cell(row=k+7, column=10).alignment = alignment
 
 merge()
-
-# for cell in ws['A:M']:
-#     cell[0].alignment = alignment
 
 # Закрытие фонового приложения Компаса
 MH.iApplication.Quit()

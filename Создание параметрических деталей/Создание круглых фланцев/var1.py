@@ -33,7 +33,7 @@ for i in range(100):
     i = i + 2
     # Подключение переменных из экселя
     Excel = Dispatch('Excel.Application')
-    book = Excel.Workbooks.open(r"D:\МАКРОСЫ\Создание параметрических деталей\БТЛИ.711142 Фланец.xls").ActiveSheet
+    book = Excel.Workbooks.open(r"D:\PROJECTS\MACROS\Создание параметрических деталей\Создание круглых фланцев\БТЛИ.711142 Фланец.xls").ActiveSheet
     listEx=Excel.ActiveSheet
     d = book.Cells(i,1).value
     Dvn = book.Cells(i,2).value

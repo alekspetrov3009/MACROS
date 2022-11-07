@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b4fe056-b201-4993-aac3-ffbaf9453c3d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Сохранение в DWG/Kompas to DWG 0.1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Сохранение в DWG/Kompas to DWG 0.2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zap_v2.1.py" beforeDir="false" afterPath="$PROJECT_DIR$/zap_v2.1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zap_v22.py" beforeDir="false" afterPath="$PROJECT_DIR$/zap_v22.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1.pym" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2.cdm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3.cdm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/4.cdm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HELP.hnd" beforeDir="false" afterPath="$PROJECT_DIR$/HELP.hnd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zap — копия.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zap_v2.1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zap_v2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zap_v22.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Служебная записка на обработку и размножение чертежей.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Служебная записка на обработку и размножение чертежей.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Сохранение в PDF/Sokhranenie_tekuschego_chertezha_ili_SP_v_pdf.pyw" beforeDir="false" afterPath="$PROJECT_DIR$/../Сохранение в PDF/Sokhranenie_tekuschego_chertezha_ili_SP_v_pdf.pyw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Сохранение в PDF/Сохранение текущего чертежа или СП в pdf.pyw" beforeDir="false" afterPath="$PROJECT_DIR$/../Сохранение в PDF/Сохранение текущего чертежа или СП в pdf.pyw" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +64,7 @@
       <recent name="C:\Users\Администратор\Desktop\excel_test\333" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.zap_v22">
+  <component name="RunManager" selected="Python.zap_v1.1">
     <configuration name="Сохранение текущего чертежа или СП в pdf.pyw" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -68,27 +78,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Сохранение в PDF/Сохранение текущего чертежа или СП в pdf.pyw" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Sokhranenie_tekuschego_chertezha_ili_SP_v_pdf.pyw" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\Администратор\AppData\Local\Programs\Python\Python310\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Сохранение в PDF" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Сохранение в PDF/Sokhranenie_tekuschego_chertezha_ili_SP_v_pdf.pyw" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -118,40 +107,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Администратор\AppData\Local\Programs\Python\Python310\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Сохранение в PDF" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Сохранение в PDF/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test.pyw" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\Администратор\AppData\Local\Programs\Python\Python310\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Сохранение в PDF" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Сохранение в PDF/test.pyw" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -181,6 +149,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="zap_v1.1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Администратор\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zap_v1.1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="zap_v22" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -202,22 +191,65 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="zap_v23" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Администратор\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zap_v23.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="zap_v2.2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Администратор\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zap_v2.2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.zap" />
       <item itemvalue="Python.Unnamed" />
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.zap_v22" />
-      <item itemvalue="Python.Sokhranenie_tekuschego_chertezha_ili_SP_v_pdf.pyw" />
-      <item itemvalue="Python.test.pyw" />
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.Сохранение текущего чертежа или СП в pdf.pyw" />
+      <item itemvalue="Python.zap_v23" />
+      <item itemvalue="Python.zap_v2.2" />
+      <item itemvalue="Python.zap_v1.1" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.zap_v22" />
+        <item itemvalue="Python.zap_v1.1" />
+        <item itemvalue="Python.zap_v23" />
+        <item itemvalue="Python.zap_v2.2" />
         <item itemvalue="Python.Сохранение текущего чертежа или СП в pdf.pyw" />
-        <item itemvalue="Python.Sokhranenie_tekuschego_chertezha_ili_SP_v_pdf.pyw" />
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.test.pyw" />
+        <item itemvalue="Python.zap_v22" />
       </list>
     </recent_temporary>
   </component>
@@ -247,9 +279,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../Сохранение в PDF/Сохранение текущего чертежа или СП в pdf.pyw</url>
-          <line>3</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

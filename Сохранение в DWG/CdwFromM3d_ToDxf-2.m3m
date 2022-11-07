@@ -1,0 +1,105 @@
+# -*- coding: cp1251 -*-
+#|CdwFromM3d_ToDxf
+
+import Kompas10API5 as KAPI
+import Kompas10API7 as KAPI7
+import pythoncom
+from win32com.client import Dispatch
+import LDefin2D
+import LDefin3D
+import ksConstants as CONST2D7
+import ksConstants3D as CONST3D7
+import MiscellaneousHelpers as MH
+
+iKompasObject = Dispatch('KOMPAS.Application.5')
+iKompasObject = KAPI.KompasObject(iKompasObject)
+MH.iKompasObject = iKompasObject
+
+iApplication = Dispatch('KOMPAS.Application.7')
+iApplication = KAPI7.IApplication(iApplication)
+MH.iApplication = iApplication
+
+iDocument3D = iKompasObject.ActiveDocument3D()
+
+iDocument = iApplication.ActiveDocument
+iKompasDocument3D = KAPI7.IKompasDocument3D(iDocument)
+
+iDocument2D = iKompasObject.Document2D()
+iDocumentParam = KAPI.ksDocumentParam(iKompasObject.GetParamStruct(LDefin2D.ko_DocumentParam))
+iDocumentParam.Init()
+iDocumentParam.type = LDefin2D.lt_DocSheetStandart
+
+iSheetParam = KAPI.ksSheetPar(iDocumentParam.GetLayoutParam())
+iSheetParam.Init()
+iSheetParam.layoutName = "D:\Program Files\ASCON\KOMPAS-3D V14\Sys\graphic.lyt"
+iSheetParam.shtType = 1
+
+iStandartSheet = KAPI.ksStandartSheet(iSheetParam.GetSheetParam())
+iStandartSheet.Init()
+iStandartSheet.direct = False
+iStandartSheet.format = 4
+iStandartSheet.multiply = 1
+
+iDocument2D.ksCreateDocument(iDocumentParam)
+
+iDocument2D = KAPI7.IKompasDocument2D(iApplication.ActiveDocument)
+viewsAndLayersManager = iDocument2D.ViewsAndLayersManager
+views = viewsAndLayersManager.Views
+view = views.Add(2)
+view.Scale = 1.0
+view.Name = "Vid 1"
+view.Angle = 0.0
+view.X =  0.0
+view.Y =  0.0
+view.Color = 0
+view.Visible = True
+
+assocView = KAPI7.IAssociationView(view._oleobj_.QueryInterface(KAPI7.NamesToIIDMap['IAssociationView'], pythoncom.IID_IDispatch))
+assocView.SourceFileName = "D:/Кузьменко (Диск)/Макрос/shablon-verh.m3d"
+assocView.BendLinesStyle = 1
+assocView.VisibleLinesStyle = 1
+assocView.BendLinesVisible = True
+assocView.Unfold =True
+assocView.ProjectionName =  '#Спереди'
+
+assocViewElements = KAPI7.IAssociationViewElements(assocView._oleobj_.QueryInterface(KAPI7.NamesToIIDMap['IAssociationViewElements'], pythoncom.IID_IDispatch))
+assocViewElements.ProjectAllObjects = True;
+
+view.Update()
+
+#~ iAssociationViewParam = KAPI.ksAssociationViewParam(iKompasObject.GetParamStruct(LDefin2D.ko_AssociationViewParam))
+#~ iAssociationViewParam.Init()
+#~ iAssociationViewParam.disassembly = False
+#~ iAssociationViewParam.fileName = C:\Users\slava.KURG\Documents\КОМПАС-3D\shablon-verh.m3d "
+#~ iAssociationViewParam.hiddenLinesShow = False
+#~ iAssociationViewParam.hiddenLinesStyle = 4
+#~ iAssociationViewParam.projBodies = True
+#~ iAssociationViewParam.projectionLink = False
+#~ iAssociationViewParam.projectionName = "#Спереди"
+#~ iAssociationViewParam.projSurfaces = False
+#~ iAssociationViewParam.projThreads = True
+#~ iAssociationViewParam.sameHatch = False
+#~ iAssociationViewParam.section = False
+#~ iAssociationViewParam.tangentEdgesShow = False
+#~ iAssociationViewParam.tangentEdgesStyle = 2
+#~ iAssociationViewParam.visibleLinesStyle = 1
+
+
+#~ iViewParam = KAPI.ksViewParam(iAssociationViewParam.GetViewParam())
+#~ iViewParam.Init()
+#~ iViewParam.angle = 0.0
+#~ iViewParam.color = 0
+#~ iViewParam.name = "Вид 1"
+#~ iViewParam.scale_ = 1.0
+#~ iViewParam.state = 3
+#~ iViewParam.x = -304.72145008754
+#~ iViewParam.y = 155.70904111239
+
+#~ iDocument2D.ksCreateSheetArbitraryView(iAssociationViewParam, 0)
+
+iDocument2D.ksSaveToDXF("D:/Кузьменко (Диск)/Макрос/shablon-verh.dxf")
+
+
+
+
+

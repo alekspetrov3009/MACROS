@@ -20,3 +20,24 @@ F:\GIT\MACROS\Заполнение служебной записки\C# version\
 F:\GIT\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.CopyComplete
 F:\GIT\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 F:\GIT\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.AssemblyReference.cache
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.SuggestedBindingRedirects.cache
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.Kompas6API2D5COM.dll
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.Kompas6API3D5COM.dll
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.Kompas6API5.dll
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.Kompas6Constants.dll
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.Kompas6Constants3D.dll
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.KompasAPI7.dll
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.KompasLibrary.dll
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.ksTreeViewLib.dll
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.ResolveComReference.cache
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.GenerateResource.cache
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.CoreCompileInputs.cache
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.CopyComplete
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb

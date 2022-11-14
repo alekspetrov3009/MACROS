@@ -37,14 +37,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CONVERTLIBINTERFACES">
-      <HintPath>C:\Program Files\ASCON\KOMPAS-3D v20\SDK\Samples\С#\Common\CONVERTLIBINTERFACES.dll</HintPath>
+      <HintPath>C:\Program Files\ASCON\KOMPAS-3D v20\SDK\Samples\Common\CONVERTLIBINTERFACES.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="KAPITypes">
       <HintPath>C:\Program Files\ASCON\KOMPAS-3D v20\SDK\Samples\С#\Common\KAPITypes.dll</HintPath>
     </Reference>
     <Reference Include="KGAXLib">
-      <HintPath>C:\Program Files\ASCON\KOMPAS-3D v20\SDK\Samples\С#\Common\KGAXLib.dll</HintPath>
+      <HintPath>C:\Program Files\ASCON\KOMPAS-3D v20\SDK\Samples\Common\KGAXLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
@@ -59,7 +59,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="VCHATCHLib">
-      <HintPath>C:\Program Files\ASCON\KOMPAS-3D v20\SDK\Samples\С#\Common\VCHATCHLib.dll</HintPath>
+      <HintPath>C:\Program Files\ASCON\KOMPAS-3D v20\SDK\Samples\Common\VCHATCHLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
   </ItemGroup>

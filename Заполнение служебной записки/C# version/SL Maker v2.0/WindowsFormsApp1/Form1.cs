@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            var Formats = new List<string>();
             // подключаемся к текущей сессии
             string progId = "KOMPAS.Application.5";
             KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
@@ -37,7 +37,8 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Подключение к Компасу не прошло");
             }
             if (kompas != null)
-            {
+            {   
+                
                 kompas.Visible = true;
                 kompas.ActivateControllerAPI();
                 ksDocument2D doc = (ksDocument2D)kompas.ActiveDocument2D();
@@ -51,35 +52,48 @@ namespace WindowsFormsApp1
                 KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
                 IKompasAPIObject retw = My7Komp.ActiveDocument;
 
+
                 // здесь искомый номер листа
                 int numb = 1;
-                int numberOfSheets = CountPages - numb;
 
-                for (int i = 0; i <= CountPages; i++)
-                    Console.WriteLine("sdfsdf");
+                // итерация по количеству листов в чертеже
+                while (numb <= CountPages)
+                    {
 
-                // правильней наверное было идти по шагам постепенно
-                // сначало ActiveDocument, затем LayoutSheets, затем get_ItemByNumber
-                // т.е. мы пропустили коллекцию листов - LayoutSheets - и сразу обратились по номеру
-                LayoutSheet MyLSheet = My7Komp.ActiveDocument.LayoutSheets.get_ItemByNumber(numberOfSheets);
+                    // правильней наверное было идти по шагам постепенно
+                    // сначало ActiveDocument, затем LayoutSheets, затем get_ItemByNumber
+                    // т.е. мы пропустили коллекцию листов - LayoutSheets - и сразу обратились по номеру
+                    ILayoutSheet MyLSheet = My7Komp.ActiveDocument.LayoutSheets.get_ItemByNumber(numb);
 
-                
-                // обращаемся к искомому объекту SheetFormat в котром и хранятся все данные о листе
-                // формат, ориентация, кратность, высота, ширина,
-                SheetFormat ShFormat = MyLSheet.Format;
 
-                // получаем формат в ввиде перечисления
-                
-                ksDocumentFormatEnum YesFormat = ShFormat.Format;
+                    // обращаемся к искомому объекту SheetFormat в котром и хранятся все данные о листе
+                    // формат, ориентация, кратность, высота, ширина,
+                    ISheetFormat ShFormat = MyLSheet.Format;
+                    //ISheetFormat count = MyLSheet.Count;
 
-                
-                // радуемся но не совсем,
-                //label1.Text = YesFormat.ToString();//тк получим значение = ksFormatA3
+                    
+                    // получаем формат в ввиде перечисления
 
-                // для перевода в человеческий вид	
-                int fgg = YesFormat.GetHashCode();
-                label2.Text = "А" + fgg.ToString();
-                label3.Text = CountPages.ToString();
+                    ksDocumentFormatEnum YesFormat = ShFormat.Format;
+
+                    // радуемся но не совсем,
+                    //label1.Text = YesFormat.ToString();//тк получим значение = ksFormatA3
+
+                    // для перевода в человеческий вид	
+                    int fgg = YesFormat.GetHashCode();
+                    label2.Text = "А" + fgg.ToString();
+                    // добавляем в список все форматы листов в чертеже
+                    Formats.Add(label2.Text.ToString());
+                    label3.Text = CountPages.ToString();
+                    numb++;
+
+                }
+                foreach (var item in Formats)
+                {
+                    Console.WriteLine(item);
+                }
+             
+
             }
         }
 
@@ -89,6 +103,11 @@ namespace WindowsFormsApp1
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

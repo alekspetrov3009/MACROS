@@ -1,4 +1,5 @@
-﻿using Kompas6API5;
+﻿using KAPITypes;
+using Kompas6API5;
 using Kompas6Constants;
 using KompasAPI7;
 using System;
@@ -55,7 +56,6 @@ namespace WindowsFormsApp1
             kompas.Quit();
         }
 
-
         public void openDrawing()
         {
 
@@ -79,6 +79,21 @@ namespace WindowsFormsApp1
         }
 
 
+        public void readShtamp()
+        {
+            string progId = "KOMPAS.Application.5";
+            KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
+            ksDocument2D doc = (ksDocument2D)kompas.ActiveDocument2D();
+            ksStamp stamp = (ksStamp)doc.GetStamp();
+            if (stamp != null)
+            {
+                if (stamp.ksOpenStamp() == 1)
+                {
+                    stamp.ksOpenStamp();
+                    string[] stampInfo = stamp.ksGetStampColumnText(1);
+                }
+            }
+        }
 
 
 
@@ -190,12 +205,12 @@ namespace WindowsFormsApp1
             openDrawing();
             CloseKompas();
 
-            /*
+            
             foreach (var item in Formats)
             {
                 Console.WriteLine(item);
             }
-            */
+            
             //ReadDrawings();
         }
     }

@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
             kompas.Quit();
         }
 
-        public void openDrawing()
+        public void OpenDrawing()
         {
 
             string progId = "KOMPAS.Application.5";
@@ -79,7 +79,7 @@ namespace WindowsFormsApp1
         }
 
 
-        public void readShtamp()
+        public void ReadShtamp()
         {
             string progId = "KOMPAS.Application.5";
             KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
@@ -91,6 +91,7 @@ namespace WindowsFormsApp1
                 {
                     stamp.ksOpenStamp();
                     string[] stampInfo = stamp.ksGetStampColumnText(1);
+                    Console.WriteLine(stampInfo[0]);    
                 }
             }
         }
@@ -125,7 +126,7 @@ namespace WindowsFormsApp1
             
             //используем API  - 7 версии
             KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
-            IKompasAPIObject retw = My7Komp.ActiveDocument;
+            //IKompasAPIObject retw = My7Komp.ActiveDocument;
 
             int CountPages = doc.ksGetDocumentPagesCount();
 
@@ -199,11 +200,19 @@ namespace WindowsFormsApp1
             
         }
 
+        public void labels()
+        {
+            int numbersOfSheets = paths.Count();
+            //string addedSheets =
+            //label4 = ToString().numbersOfSheets;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             StartKompas();
-            openDrawing();
+            OpenDrawing();
             CloseKompas();
+            Console.WriteLine(numberof)
 
             
             foreach (var item in Formats)
@@ -213,6 +222,8 @@ namespace WindowsFormsApp1
             
             //ReadDrawings();
         }
+
+        
     }
     
 }

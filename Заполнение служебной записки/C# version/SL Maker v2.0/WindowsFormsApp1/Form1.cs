@@ -26,6 +26,7 @@ namespace WindowsFormsApp1
         public List<string> paths = new List<string>();
         private static IApplication _kompas7;
         public List<string> Formats = new List<string>();
+        public string[] stampInfo;
         public Form1()
         {
             InitializeComponent();
@@ -209,6 +210,10 @@ namespace WindowsFormsApp1
             foreach (var item in Formats)
             {
                 Console.WriteLine(item);
+            }
+            foreach (var shtamps in stampInfo)
+            {
+                Console.WriteLine(shtamps);
             }
             
             //ReadDrawings();

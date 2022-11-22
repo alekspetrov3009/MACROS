@@ -1,0 +1,21 @@
+public void ReadShtamp()
+        { 
+            int cellNumber = 1;
+
+            string progId = "KOMPAS.Application.5";
+            KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
+            ksDocument2D doc = (ksDocument2D)kompas.ActiveDocument2D();
+            // ksDocument2D docD= (ksDocument2D)kompas.ActiveDocument2D();
+            KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
+            ILayoutSheet MyLSheet = My7Komp.ActiveDocument.LayoutSheets.get_ItemByNumber(cellNumber);
+
+            ksStamp stamp = (ksStamp)doc.GetStamp();
+            //LayoutSheets ls = doc.LayoutSheets;
+            //LayoutSheet LS = ls.ItemByNumber[1];
+            //IStamp istamp = LS.Stamp;
+
+            IStamp istamp = MyLSheet.Stamp;
+            IText naimenovanie = istamp.Text[1];
+            IText oboznachenie = istamp.Text[2];
+            Console.WriteLine(naimenovanie.ToString());
+        }

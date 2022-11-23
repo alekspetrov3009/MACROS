@@ -7,6 +7,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -18,6 +19,7 @@ namespace WindowsFormsApp1
         private static IApplication _kompas7;
         public List<string> Formats = new List<string>();
         List<string> countOfSheets = new List<string>();
+        List<string> CountOfSpec = new List<string>();
         public Form1()
         {
             InitializeComponent();
@@ -61,7 +63,7 @@ namespace WindowsFormsApp1
             InterfaceConnection();
             //используем API  - 7 версии
             KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
-            IKompasAPIObject retw = My7Komp.ActiveDocument;
+            //IKompasAPIObject retw = My7Komp.ActiveDocument;
 
             for (int i = 0; i < paths.Count; i++)
             {
@@ -69,14 +71,15 @@ namespace WindowsFormsApp1
 
                 // вызов метода чтения форматов
                 ReadDrawings();
-
+                //ReadSpecification();
+                //ReadSpecShtamp();
                 Console.WriteLine(paths[i]);
                 Console.WriteLine();
             }
         }
 
 
-        public void ReadShtamp()
+        public void ReadDrawShtamp()
         {
             ksDocument2D doc = (ksDocument2D)kompas.ActiveDocument2D();
             KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
@@ -90,11 +93,26 @@ namespace WindowsFormsApp1
             Console.WriteLine(oboznachenie.Str);
         }
 
+        //public void ReadSpecShtamp()
+        //{
+        //    //string progId = "KOMPAS.Application.5";
+        //    //KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
+        //    ksSpcDocument spec = (ksSpcDocument)kompas.SpcActiveDocument();
+        //    KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
+        //    ILayoutSheet MyLSheet = My7Komp.ActiveDocument.LayoutSheets.get_ItemByNumber(1);
+
+        //    ksStamp stamp = (ksStamp)spec.GetStamp();
+        //    IStamp istamp = MyLSheet.Stamp;
+
+        //    IText naimenovanie = istamp.Text[1];
+        //    IText oboznachenie = istamp.Text[2];
+        //    Console.WriteLine(naimenovanie.Str);
+        //    Console.WriteLine(oboznachenie.Str);
+        //}
+
 
         public void ReadDrawings()
         {
-            
-
             InterfaceConnection();
             //string progId = "KOMPAS.Application.5";
             //KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
@@ -141,12 +159,43 @@ namespace WindowsFormsApp1
 
                 Console.WriteLine(drawingFormat);
 
+
+                // progressBar
+                progressBar1.Minimum = 0;
+                progressBar1.Maximum = paths.Count();
+                progressBar1.Step = 10;
+                progressBar1.PerformStep();
+
             }
             Console.WriteLine(CountPages);
+            //MessageBox.Show("ok");
             //Console.WriteLine(countOfSheets);
             // чтение штампа
-            ReadShtamp();
+            ReadDrawShtamp();
         }
+
+
+        //public void ReadSpecification()
+        //{
+        //    string progId = "KOMPAS.Application.5";
+        //    KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);            
+        //    ksSpcDocument spec = (ksSpcDocument)kompas.SpcActiveDocument();
+
+        //    if (kompas == null)
+        //    {
+        //        Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
+        //        kompas = (KompasObject)Activator.CreateInstance(t);
+        //    }
+        //    KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
+
+        //    // Количество листов в документе
+        //    int CountSpec = spec.ksGetSpcDocumentPagesCount();
+
+        //    CountOfSpec.Add(CountSpec.ToString());
+        //    Console.WriteLine(CountSpec.ToString());    
+        //    ReadSpecShtamp();
+        //    }
+
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -172,16 +221,30 @@ namespace WindowsFormsApp1
 
         public void textBox1_DragDrop(object sender, DragEventArgs e)
         {
-
+            
             foreach (string obj in (string[])e.Data.GetData(DataFormats.FileDrop))
                 if (Directory.Exists(obj))
                     paths.AddRange(Directory.GetFiles(obj, "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".cdw") || s.EndsWith(".spw")));
                 else
                     paths.Add(obj);
+
+                // Обработка повторяющихся путей в списке
+                for (int i = 0; i < paths.Count; i++)
+                {
+                    for (int j = i + 1; j < paths.Count; j++)
+                    {
+                        if (paths[i] == paths[j])
+                        {
+                            paths.RemoveAt(j);
+                        }
+                        textBox1.Clear();
+                    }
+                }
             foreach (string path in paths)
                 textBox1.Text += path + "\r\n";
             int numbersOfSheets = paths.Count();
-            label4.Text = numbersOfSheets.ToString();
+            label1.Text = $"Добавлено файлов: {numbersOfSheets.ToString()}";
+            
         }
 
 
@@ -190,8 +253,7 @@ namespace WindowsFormsApp1
             Formats.Clear();
             paths.Clear();
             textBox1.Clear();
-            label4.Text = "0";
-
+            label1.Text = "Добавлено файлов: 0";
         }
 
 
@@ -227,9 +289,21 @@ namespace WindowsFormsApp1
                 folderName = folderBrowserDialog1.SelectedPath;
             }
             textBox2.Text = folderName;
+            //Console.WriteLine(comboBox1.Text);
+
         }
 
-  //,dfgm,dflmgsmg
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string[] surnames = { "Круглов П.А.", "Петров А.И.", "Сорокин А.А.", "Уфрутов Р.С." };
+            string[] orderNumbers = { "340434/1" };
+            string[] transformerType = { "ЭТЦНР-10500/35-У3" };
+            comboBox1.Items.AddRange(surnames);
+            comboBox2.Items.AddRange(orderNumbers);
+            comboBox3.Items.AddRange(transformerType);
+        }
+
+        //,dfgm,dflmgsmg
 
 
 

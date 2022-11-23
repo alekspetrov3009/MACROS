@@ -16,10 +16,12 @@ namespace WindowsFormsApp1
     {
         private KompasObject kompas;
         public List<string> paths = new List<string>();
-        private static IApplication _kompas7;
         public List<string> Formats = new List<string>();
         List<string> countOfSheets = new List<string>();
         List<string> CountOfSpec = new List<string>();
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -44,13 +46,16 @@ namespace WindowsFormsApp1
                 MessageBox.Show(this, "Не найден активный объект", "Сообщение");
         }
 
-        public void InterfaceConnection()
+        public void InterfaceConnectionAPI5()
         {
             string progId = "KOMPAS.Application.5";
             KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
             ksDocument2D doc = (ksDocument2D)kompas.ActiveDocument2D();
         }
 
+        public void InterfaceConnectionAPI7()
+        { 
+        }
 
         public void CloseKompas()
         {
@@ -60,70 +65,52 @@ namespace WindowsFormsApp1
 
         public void OpenDrawing()
         {
-            InterfaceConnection();
             //используем API  - 7 версии
             KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
-            //IKompasAPIObject retw = My7Komp.ActiveDocument;
 
+
+            
             for (int i = 0; i < paths.Count; i++)
             {
                 IKompasDocument docOpen = My7Komp.Documents.Open(paths[i], false, true);
 
-                // вызов метода чтения форматов
-                ReadDrawings();
-                //ReadSpecification();
-                //ReadSpecShtamp();
+                
+
+
+                ReadDrawings(docOpen);
+                //ReadSpecification(spec);
+                ReadDrawShtamp(docOpen);
                 Console.WriteLine(paths[i]);
                 Console.WriteLine();
             }
         }
 
 
-        public void ReadDrawShtamp()
+        public void ReadDrawShtamp(IKompasDocument docOpen)
         {
-            ksDocument2D doc = (ksDocument2D)kompas.ActiveDocument2D();
-            KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
-            ILayoutSheet MyLSheet = My7Komp.ActiveDocument.LayoutSheets.get_ItemByNumber(1);
-            ksStamp stamp = (ksStamp)doc.GetStamp();
-            IStamp istamp = MyLSheet.Stamp;
+            LayoutSheets _ls = docOpen.LayoutSheets;
+            LayoutSheet LS = _ls.ItemByNumber[1];
+
+            IStamp istamp = LS.Stamp;
+
+           // IStamp format = LS.Format.ToString();
 
             IText naimenovanie = istamp.Text[1];
             IText oboznachenie = istamp.Text[2];
+
+            Console.WriteLine(naimenovanie.Str);
+            Console.WriteLine(oboznachenie.Str);
             Console.WriteLine(naimenovanie.Str);
             Console.WriteLine(oboznachenie.Str);
         }
 
-        //public void ReadSpecShtamp()
-        //{
-        //    //string progId = "KOMPAS.Application.5";
-        //    //KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
-        //    ksSpcDocument spec = (ksSpcDocument)kompas.SpcActiveDocument();
-        //    KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
-        //    ILayoutSheet MyLSheet = My7Komp.ActiveDocument.LayoutSheets.get_ItemByNumber(1);
 
-        //    ksStamp stamp = (ksStamp)spec.GetStamp();
-        //    IStamp istamp = MyLSheet.Stamp;
-
-        //    IText naimenovanie = istamp.Text[1];
-        //    IText oboznachenie = istamp.Text[2];
-        //    Console.WriteLine(naimenovanie.Str);
-        //    Console.WriteLine(oboznachenie.Str);
-        //}
-
-
-        public void ReadDrawings()
+        public void ReadDrawings(IKompasDocument docOpen)
         {
-            InterfaceConnection();
+            //InterfaceConnection();
             //string progId = "KOMPAS.Application.5";
             //KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
             ksDocument2D doc = (ksDocument2D)kompas.ActiveDocument2D();
-
-
-            if (kompas == null)
-            {
-                Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
-                kompas = (KompasObject)Activator.CreateInstance(t);
-            }
 
             //используем API  - 7 версии
             KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
@@ -140,11 +127,10 @@ namespace WindowsFormsApp1
             // итерация по количеству листов в чертеже
             while (numb <= CountPages)
             {
-                ILayoutSheet MyLSheet = My7Komp.ActiveDocument.LayoutSheets.get_ItemByNumber(numb);
+                ILayoutSheets _ls = docOpen.LayoutSheets;
+                ILayoutSheet LS = _ls.ItemByNumber[numb];
 
-                // обращаемся к искомому объекту SheetFormat в котром и хранятся все данные о листе
-                // формат, ориентация, кратность, высота, ширина,
-                ISheetFormat ShFormat = MyLSheet.Format;
+                ISheetFormat ShFormat = LS.Format;
 
                 // получаем формат в ввиде перечисления
                 ksDocumentFormatEnum YesFormat = ShFormat.Format;
@@ -168,33 +154,17 @@ namespace WindowsFormsApp1
 
             }
             Console.WriteLine(CountPages);
-            //MessageBox.Show("ok");
-            //Console.WriteLine(countOfSheets);
-            // чтение штампа
-            ReadDrawShtamp();
+
         }
 
 
-        //public void ReadSpecification()
-        //{
-        //    string progId = "KOMPAS.Application.5";
-        //    KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);            
-        //    ksSpcDocument spec = (ksSpcDocument)kompas.SpcActiveDocument();
+        public void ReadSpecification(ksSpcDocument spec)
+        {
+            int CountSpec = spec.ksGetSpcDocumentPagesCount();
 
-        //    if (kompas == null)
-        //    {
-        //        Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
-        //        kompas = (KompasObject)Activator.CreateInstance(t);
-        //    }
-        //    KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
-
-        //    // Количество листов в документе
-        //    int CountSpec = spec.ksGetSpcDocumentPagesCount();
-
-        //    CountOfSpec.Add(CountSpec.ToString());
-        //    Console.WriteLine(CountSpec.ToString());    
-        //    ReadSpecShtamp();
-        //    }
+            CountOfSpec.Add(CountSpec.ToString());
+            Console.WriteLine(CountSpec.ToString());
+        }
 
 
 

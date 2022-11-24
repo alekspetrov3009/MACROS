@@ -63,10 +63,19 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static byte[] Служебная_записка_на_обработку_и_размножение_чертежей {
+        internal static byte[] Excel_Template {
             get {
-                object obj = ResourceManager.GetObject("Служебная_записка_на_обработку_и_размножение_чертежей", resourceCulture);
+                object obj = ResourceManager.GetObject("Excel_Template", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Excel_template.
+        /// </summary>
+        internal static string String {
+            get {
+                return ResourceManager.GetString("String", resourceCulture);
             }
         }
     }

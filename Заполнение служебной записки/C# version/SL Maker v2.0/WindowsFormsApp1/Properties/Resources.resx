@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Служебная_записка_на_обработку_и_размножение_чертежей" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Служебная записка на обработку и размножение чертежей.xltx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Excel_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Excel_Template.xltx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Excel_template</value>
   </data>
 </root>

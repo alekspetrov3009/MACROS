@@ -8,7 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-
+using Microsoft.Office.Interop.Excel;
+using System.Security.Cryptography.X509Certificates;
+using System.Drawing;
 
 namespace WindowsFormsApp1
 {
@@ -19,8 +21,8 @@ namespace WindowsFormsApp1
         public List<string> Formats = new List<string>();
         List<string> countOfSheets = new List<string>();
         List<string> CountOfSpec = new List<string>();
-
-
+        List<string> oboznachenie = new List<string>();
+        List<string> naimenovanie = new List<string>();
 
         public Form1()
         {
@@ -69,7 +71,7 @@ namespace WindowsFormsApp1
         public void OpenDrawing()
         {
             //используем API  - 7 версии
-            KompasAPI7._Application My7Komp = (_Application)kompas.ksGetApplication7();
+            KompasAPI7._Application My7Komp = (KompasAPI7._Application)kompas.ksGetApplication7();
 
             for (int i = 0; i < paths.Count; i++)
             {
@@ -92,7 +94,7 @@ namespace WindowsFormsApp1
 
                 Console.WriteLine(paths[i]);
                 Console.WriteLine();
-                
+
             }
         }
 
@@ -105,12 +107,15 @@ namespace WindowsFormsApp1
 
             //IStamp format = (IStamp)LS.Format;
 
-            IText naimenovanie = istamp.Text[1];
-            IText oboznachenie = istamp.Text[2];
+            IText naimen = istamp.Text[1];
+            IText obozn = istamp.Text[2];
+            naimenovanie.Add(naimen.Str);
+            oboznachenie.Add(obozn.Str);    
+
 
             //Console.WriteLine(format);
-            Console.WriteLine(naimenovanie.Str);
-            Console.WriteLine(oboznachenie.Str.Replace("БТЛИ.", ""));
+            //Console.WriteLine(naimenovanie.Str);
+            //Console.WriteLine(oboznachenie.Str.Replace("БТЛИ.", ""));
         }
 
         public void ReadDrawings(IKompasDocument docOpen)
@@ -239,7 +244,7 @@ namespace WindowsFormsApp1
             StartKompas();
             OpenDrawing();
             CloseKompas();
-            
+
 
 
 
@@ -264,7 +269,10 @@ namespace WindowsFormsApp1
         private void button4_Click(object sender, EventArgs e)
         {
             TemplateUpload();
+            //OpenExcel();
+
         }
+
 
         private void сhooseFolderButton_Click(object sender, EventArgs e)
         {
@@ -278,24 +286,101 @@ namespace WindowsFormsApp1
                 folderName = folderBrowserDialog1.SelectedPath;
             }
             textBox2.Text = folderName;
-         }
+        }
 
-      
+
 
 
         //выгрузка шаблона
         public void TemplateUpload()
         {
-            string noteNumber = noteNumberTextbox.Text.Replace("/","-").Replace(@"\", "-");
-            File.WriteAllBytes($@"{textBox2.Text}\Cлужебная записка на обработку и размножение чертежей{ noteNumber}.xltx", Properties.Resources.Excel_Template);
+            string noteNumber = noteNumberTextbox.Text.Replace("/", "-").Replace(@"\", "-");
+            File.WriteAllBytes($@"{textBox2.Text}\Cлужебная записка на обработку и размножение чертежей {noteNumber}.xltx", Properties.Resources.Excel_Template);
+            string templatePath = $@"{textBox2.Text}\Cлужебная записка на обработку и размножение чертежей {noteNumber}.xltx";
+            OpenExcel(templatePath);
         }
 
-       
+
         //всплывающее уведомление
         public void Notify()
         {
             notifyIcon1.Icon = Icon;
             notifyIcon1.ShowBalloonTip(10000, "Выполнено", "Штампы и форматы считаны", ToolTipIcon.Info);
         }
+
+
+        
+        public void OpenExcel(string templatePath)
+        {
+            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+            //Form1 form1 = new Form1();
+            app.Workbooks.Open(templatePath);
+            app.Visible = true;
+            Console.WriteLine(templatePath);
+            FillExcel(app);
+        }
+
+        public void FillExcel(Microsoft.Office.Interop.Excel.Application app)
+        {
+            //Отключить отображение окон с сообщениями
+            app.DisplayAlerts = false;
+            //Получаем первый лист документа (счет начинается с 1)
+            Worksheet sheet = (Worksheet)app.Worksheets.get_Item(1);
+
+            
+            //Номер служебной записки
+            sheet.Range["B11"].Value = noteNumberTextbox.Text.ToString();
+            //Дата составления
+            sheet.Range["C11"].Value = dateTimePicker1.Text.ToString();
+            //Тип трансформатора
+            sheet.Range["D11"].Value = comboBox3.Text.ToString();
+            //Номер заказа
+            sheet.Range["E11"].Value = comboBox2.Text.ToString();
+
+            //Заполнение массивов
+
+            int i = 11; //строка
+            int lastCell = 0; //номер последней ячейки
+            int stringNumber = 1; // Номер позиции в таблице
+            for (int a = 0; paths.Count > a;)
+            {
+                sheet.Cells[i, 10].Value = oboznachenie[a];
+                sheet.Cells[i, 11].Value = naimenovanie[a];
+                sheet.Cells[i, 12].Value = countOfSheets[a];
+                sheet.Cells[i, 13].Value = Formats[a];
+                sheet.Cells[i, 1].Value = stringNumber;
+                i++;
+                a++;
+                stringNumber++;
+                lastCell= 10 + a;    
+            }
+            FormatCells(sheet, lastCell);
+        }
+        public void FormatCells(Worksheet sheet, int lastcell)
+        {
+            //Выбор диапазона
+            Range cellsRange = sheet.get_Range("A11", $"M{lastcell}");
+            //Шрифт для диапазона
+            cellsRange.Cells.Font.Name = "Tahoma";
+            //Размер шрифта для диапазона
+            cellsRange.Cells.Font.Size = 10;
+            //Обводка ячеек
+            cellsRange.Borders.Color = ColorTranslator.ToOle(Color.Black);
+            // Выравнивание текста в ячейках по центру
+            cellsRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            cellsRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+
+            //Объединение ячеек 
+            string[] Columns = { "B", "C", "D", "E" };
+            Range range3 = sheet.get_Range($"{Columns[i]}11", $"B{lastcell}");
+            range3.Merge(Type.Missing);
+
+            Console.WriteLine(lastcell);
+        }
+
     }
+
+        
+    
 }
+

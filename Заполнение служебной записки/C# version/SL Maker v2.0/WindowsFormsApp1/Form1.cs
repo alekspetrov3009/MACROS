@@ -1,16 +1,15 @@
 ﻿using Kompas6API5;
 using Kompas6Constants;
 using KompasAPI7;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
-using System.Security.Cryptography.X509Certificates;
-using System.Drawing;
 
 namespace WindowsFormsApp1
 {
@@ -62,6 +61,7 @@ namespace WindowsFormsApp1
             string progId = "KOMPAS.Application.5";
             KompasObject kompas = (KompasObject)Marshal.GetActiveObject(progId);
             ksDocument2D doc = (ksDocument2D)kompas.ActiveDocument2D();
+
         }
 
         public void InterfaceConnectionAPI7()
@@ -75,6 +75,9 @@ namespace WindowsFormsApp1
 
             for (int i = 0; i < paths.Count; i++)
             {
+                //Пропустить сообщения
+                My7Komp.HideMessage = ksHideMessageEnum.ksHideMessageNo;
+
                 IKompasDocument docOpen = My7Komp.Documents.Open(paths[i], false, true);
 
                 string fileExtension = Path.GetExtension(paths[i]);
@@ -87,14 +90,11 @@ namespace WindowsFormsApp1
                 {
                     ReadDrawings(docOpen);
                 }
+                My7Komp.HideMessage = ksHideMessageEnum.ksShowMessage;
 
                 ReadDrawShtamp(docOpen);
-
+                
                 ProgressBar(i);
-
-                Console.WriteLine(paths[i]);
-                Console.WriteLine();
-
             }
         }
 
@@ -105,17 +105,10 @@ namespace WindowsFormsApp1
 
             IStamp istamp = LS.Stamp;
 
-            //IStamp format = (IStamp)LS.Format;
-
             IText naimen = istamp.Text[1];
             IText obozn = istamp.Text[2];
             naimenovanie.Add(naimen.Str);
-            oboznachenie.Add(obozn.Str);    
-
-
-            //Console.WriteLine(format);
-            //Console.WriteLine(naimenovanie.Str);
-            //Console.WriteLine(oboznachenie.Str.Replace("БТЛИ.", ""));
+            oboznachenie.Add(obozn.Str);
         }
 
         public void ReadDrawings(IKompasDocument docOpen)
@@ -132,7 +125,8 @@ namespace WindowsFormsApp1
             int numb = 1;
 
             // итерация по количеству листов в чертеже
-            while (numb <= CountPages)
+            //while (numb <= CountPages)   //итерация по всем листам в документе
+            while (numb <= 1)       // итерация только по первому листу
             {
                 ILayoutSheets _ls = docOpen.LayoutSheets;
                 ILayoutSheet LS = _ls.ItemByNumber[numb];
@@ -162,7 +156,9 @@ namespace WindowsFormsApp1
             ksSpcDocument spec = (ksSpcDocument)kompas.SpcActiveDocument();
             // Количество листов в документе
             int CountSpec = spec.ksGetSpcDocumentPagesCount();
-            CountOfSpec.Add(CountSpec.ToString());
+            //CountOfSpec.Add(CountSpec.ToString());
+            countOfSheets.Add(CountSpec.ToString());
+            Formats.Add("A4");
             Console.WriteLine(CountSpec.ToString());
         }
 
@@ -207,7 +203,9 @@ namespace WindowsFormsApp1
                 if (Directory.Exists(obj))
                     paths.AddRange(Directory.GetFiles(obj, "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".cdw") || s.EndsWith(".spw")));
                 else
+                    
                     paths.Add(obj);
+            //textBox1.Text = paths.EndsWith(".cdw") || paths.EndsWith(".spw");
 
             // Обработка повторяющихся путей в списке
             for (int i = 0; i < paths.Count; i++)
@@ -289,8 +287,6 @@ namespace WindowsFormsApp1
         }
 
 
-
-
         //выгрузка шаблона
         public void TemplateUpload()
         {
@@ -298,6 +294,8 @@ namespace WindowsFormsApp1
             File.WriteAllBytes($@"{textBox2.Text}\Cлужебная записка на обработку и размножение чертежей {noteNumber}.xltx", Properties.Resources.Excel_Template);
             string templatePath = $@"{textBox2.Text}\Cлужебная записка на обработку и размножение чертежей {noteNumber}.xltx";
             OpenExcel(templatePath);
+            //Удалить шаблон после заполнения
+            File.Delete(templatePath);
         }
 
 
@@ -307,15 +305,12 @@ namespace WindowsFormsApp1
             notifyIcon1.Icon = Icon;
             notifyIcon1.ShowBalloonTip(10000, "Выполнено", "Штампы и форматы считаны", ToolTipIcon.Info);
         }
-
-
         
         public void OpenExcel(string templatePath)
         {
             Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
-            //Form1 form1 = new Form1();
             app.Workbooks.Open(templatePath);
-            app.Visible = true;
+            app.Visible = false;
             Console.WriteLine(templatePath);
             FillExcel(app);
         }
@@ -337,14 +332,17 @@ namespace WindowsFormsApp1
             //Номер заказа
             sheet.Range["E11"].Value = comboBox2.Text.ToString();
 
+
             //Заполнение массивов
 
             int i = 11; //строка
             int lastCell = 0; //номер последней ячейки
             int stringNumber = 1; // Номер позиции в таблице
+            //string withoutBTLI = oboznachenie.Remove("БТЛИ.");
             for (int a = 0; paths.Count > a;)
             {
-                sheet.Cells[i, 10].Value = oboznachenie[a];
+                sheet.Cells[i, 9].Value = "БТЛИ.";
+                sheet.Cells[i, 10].Value = oboznachenie[a].Remove(0, 5); //удаляет БТЛИ.
                 sheet.Cells[i, 11].Value = naimenovanie[a];
                 sheet.Cells[i, 12].Value = countOfSheets[a];
                 sheet.Cells[i, 13].Value = Formats[a];
@@ -354,33 +352,51 @@ namespace WindowsFormsApp1
                 stringNumber++;
                 lastCell= 10 + a;    
             }
+
+            //Руководитель проекта
+            sheet.Range[$"D{lastCell + 4}"].Value = "Руководитель проекта";
+            sheet.Range[$"J{lastCell + 4}"].Value = "Уфрутов Р.С.";
+            //Исполнитель
+            sheet.Range[$"D{lastCell + 6}"].Value = "Исполнитель";
+            sheet.Range[$"J{lastCell + 6}"].Value = comboBox1.Text.ToString();
+
             FormatCells(sheet, lastCell);
+            SaveExcel(app);
         }
+
         public void FormatCells(Worksheet sheet, int lastcell)
         {
             //Выбор диапазона
             Range cellsRange = sheet.get_Range("A11", $"M{lastcell}");
             //Шрифт для диапазона
-            cellsRange.Cells.Font.Name = "Tahoma";
+            cellsRange.Cells.Font.Name = "Times New Roman";
             //Размер шрифта для диапазона
-            cellsRange.Cells.Font.Size = 10;
+            cellsRange.Cells.Font.Size = 11;
             //Обводка ячеек
             cellsRange.Borders.Color = ColorTranslator.ToOle(Color.Black);
             // Выравнивание текста в ячейках по центру
             cellsRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
             cellsRange.HorizontalAlignment = XlHAlign.xlHAlignCenter;
 
-            //Объединение ячеек 
-            string[] Columns = { "B", "C", "D", "E" };
-            Range range3 = sheet.get_Range($"{Columns[i]}11", $"B{lastcell}");
-            range3.Merge(Type.Missing);
 
-            Console.WriteLine(lastcell);
+            //Объединение ячеек 
+            for (int i = 0; i <= 3; )
+            {
+                string[] Columns = { "B", "C", "D", "E" };
+                Range mergeCells = sheet.get_Range($"{Columns[i]}11", $"{Columns[i]}{lastcell}");
+                mergeCells.Merge(Type.Missing);
+                i++;
+            }
         }
 
+        private void SaveExcel(Microsoft.Office.Interop.Excel.Application app)
+        {
+            string noteNumber = noteNumberTextbox.Text.Replace("/", "-").Replace(@"\", "-");
+            app.Application.ActiveWorkbook.SaveAs($@"{textBox2.Text}\Cлужебная записка на обработку и размножение чертежей {noteNumber}.xlsx");
+            //закрытие приложения
+            app.Quit();
+            Marshal.ReleaseComObject(app);
+        }
     }
-
-        
-    
 }
 

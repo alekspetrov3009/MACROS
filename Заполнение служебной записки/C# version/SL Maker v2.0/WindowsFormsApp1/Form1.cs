@@ -96,6 +96,8 @@ namespace WindowsFormsApp1
                 
                 ProgressBar(i);
             }
+            string baloonText = "Все данные считаны";
+            Notify(baloonText);   
         }
 
         public void ReadDrawShtamp(IKompasDocument docOpen)
@@ -175,17 +177,7 @@ namespace WindowsFormsApp1
             progressBar1.PerformStep();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            for (int i = 0; i < paths.Count; i++)
-            {
-                Console.WriteLine(paths[i]);
-            }
-
-        }
-
-
+   
         public void textBox1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -260,7 +252,7 @@ namespace WindowsFormsApp1
             //MessageBox.Show("ok");
 
             //ReadDrawings();
-            Notify();
+            //Notify(string baloonText);
         }
 
 
@@ -291,19 +283,18 @@ namespace WindowsFormsApp1
         public void TemplateUpload()
         {
             string noteNumber = noteNumberTextbox.Text.Replace("/", "-").Replace(@"\", "-");
-            File.WriteAllBytes($@"{textBox2.Text}\Cлужебная записка на обработку и размножение чертежей {noteNumber}.xltx", Properties.Resources.Excel_Template);
+            File.WriteAllBytes($@"{textBox2.Text}\Cлужебная записка на обработку и размножение чертежей {noteNumber}.xltx", SL_Maker.Properties.Resources.Excel_Template);
             string templatePath = $@"{textBox2.Text}\Cлужебная записка на обработку и размножение чертежей {noteNumber}.xltx";
             OpenExcel(templatePath);
             //Удалить шаблон после заполнения
             File.Delete(templatePath);
         }
 
-
         //всплывающее уведомление
-        public void Notify()
+        public void Notify(string baloonText)
         {
             notifyIcon1.Icon = Icon;
-            notifyIcon1.ShowBalloonTip(10000, "Выполнено", "Штампы и форматы считаны", ToolTipIcon.Info);
+            notifyIcon1.ShowBalloonTip(10000, "Выполнено", baloonText, ToolTipIcon.Info);
         }
         
         public void OpenExcel(string templatePath)
@@ -313,6 +304,9 @@ namespace WindowsFormsApp1
             app.Visible = false;
             Console.WriteLine(templatePath);
             FillExcel(app);
+
+            string baloonText = "Служебная записка создана";
+            Notify(baloonText);
         }
 
         public void FillExcel(Microsoft.Office.Interop.Excel.Application app)

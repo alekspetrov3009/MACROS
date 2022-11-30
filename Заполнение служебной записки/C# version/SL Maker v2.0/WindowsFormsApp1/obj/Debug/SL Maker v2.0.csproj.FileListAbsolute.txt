@@ -44,3 +44,5 @@ D:\PROJECTS\MACROS\Заполнение служебной записки\C# ver
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker - Формирование служебной записки.application
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker - Формирование служебной записки.exe
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker - Формирование служебной записки.pdb
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\bin\Debug\KAPITypes.dll
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.CopyComplete

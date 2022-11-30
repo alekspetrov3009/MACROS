@@ -190,7 +190,7 @@ namespace WindowsFormsApp1
 
         public void textBox1_DragDrop(object sender, DragEventArgs e)
         {
-
+            textBox1.Clear();
             foreach (string obj in (string[])e.Data.GetData(DataFormats.FileDrop))
                 if (Directory.Exists(obj))
                     paths.AddRange(Directory.GetFiles(obj, "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".cdw") || s.EndsWith(".spw")));
@@ -391,6 +391,8 @@ namespace WindowsFormsApp1
             app.Quit();
             Marshal.ReleaseComObject(app);
         }
+
+
     }
 }
 

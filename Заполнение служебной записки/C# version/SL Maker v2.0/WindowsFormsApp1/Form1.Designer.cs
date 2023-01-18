@@ -32,8 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnGetFormat = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -82,35 +82,35 @@
             this.textBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox1_DragDrop);
             this.textBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox1_DragEnter);
             // 
-            // button2
+            // btnClear
             // 
-            this.button2.BackColor = System.Drawing.Color.LightGray;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(10, 86);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(264, 39);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Очистить список";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnClear.BackColor = System.Drawing.Color.LightGray;
+            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnClear.FlatAppearance.BorderSize = 0;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Location = new System.Drawing.Point(10, 86);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(264, 39);
+            this.btnClear.TabIndex = 7;
+            this.btnClear.Text = "Очистить список";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // btnGetFormat
             // 
-            this.button3.BackColor = System.Drawing.Color.LightGray;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(10, 39);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(264, 39);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Получить форматы";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnGetFormat.BackColor = System.Drawing.Color.LightGray;
+            this.btnGetFormat.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnGetFormat.FlatAppearance.BorderSize = 0;
+            this.btnGetFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGetFormat.Location = new System.Drawing.Point(10, 39);
+            this.btnGetFormat.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGetFormat.Name = "btnGetFormat";
+            this.btnGetFormat.Size = new System.Drawing.Size(264, 39);
+            this.btnGetFormat.TabIndex = 8;
+            this.btnGetFormat.Text = "Получить форматы";
+            this.btnGetFormat.UseVisualStyleBackColor = false;
+            this.btnGetFormat.Click += new System.EventHandler(this.button3_Click);
             // 
             // label4
             // 
@@ -301,8 +301,8 @@
             this.ClientSize = new System.Drawing.Size(613, 390);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnGetFormat);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
@@ -327,8 +327,8 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnGetFormat;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.TextBox textBox2;

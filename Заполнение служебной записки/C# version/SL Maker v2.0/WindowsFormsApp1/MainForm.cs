@@ -71,7 +71,6 @@ namespace WindowsFormsApp1
             }
         }
 
-
         public void textBox1_DragDrop(object sender, DragEventArgs e)
         {
             textBox1.Clear();
@@ -95,11 +94,11 @@ namespace WindowsFormsApp1
                     textBox1.Clear();
                 }
             }
+
             foreach (string path in paths)
                 textBox1.Text += path + "\r\n";
             int numbersOfSheets = paths.Count();
             label1.Text = $"Добавлено файлов: {numbersOfSheets}";
-
         }
 
         public void TemplateUpload()
@@ -126,7 +125,6 @@ namespace WindowsFormsApp1
         {
             UsingKompas usingKompas = new UsingKompas();
             usingKompas.StartKompas();
-            //usingKompas.OpenDrawing();
             usingKompas.CloseKompas();
         }
 

@@ -15,8 +15,6 @@ namespace SL_Maker
     public class UsingExcel : MainForm
     {
         //выгрузка шаблона
-        
-
         public void OpenExcel(string templatePath)
         {
             Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
@@ -37,13 +35,13 @@ namespace SL_Maker
             Worksheet sheet = (Worksheet)app.Worksheets.get_Item(1);
 
             //Номер служебной записки
-            sheet.Range["B11"].Value = MainForm.noteNumber;
+            sheet.Range["B11"].Value = noteNumber;
             //Дата составления
-            sheet.Range["C11"].Value = MainForm.date;
+            sheet.Range["C11"].Value = date;
             //Тип трансформатора
-            sheet.Range["D11"].Value = MainForm.type;
+            sheet.Range["D11"].Value = type;
             //Номер заказа
-            sheet.Range["E11"].Value = MainForm.order;
+            sheet.Range["E11"].Value = order;
 
             //Заполнение массивов
             int i = 11; //строка
@@ -70,7 +68,7 @@ namespace SL_Maker
 
             //Исполнитель
             sheet.Range[$"D{lastCell + 6}"].Value = "Исполнитель";
-            sheet.Range[$"J{lastCell + 6}"].Value = MainForm.performer;
+            sheet.Range[$"J{lastCell + 6}"].Value = performer;
 
             FormatCells(sheet, lastCell);
             SaveExcel(app);

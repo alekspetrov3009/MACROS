@@ -36,7 +36,6 @@ D:\PROJECTS\MACROS\Заполнение служебной записки\C# ver
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.KompasLibrary.dll
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\Interop.ksTreeViewLib.dll
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.ResolveComReference.cache
-D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL_Maker.Properties.Resources.resources
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.GenerateResource.cache
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.CoreCompileInputs.cache
@@ -46,3 +45,4 @@ D:\PROJECTS\MACROS\Заполнение служебной записки\C# ver
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker - Формирование служебной записки.pdb
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\bin\Debug\KAPITypes.dll
 D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\SL Maker v2.0.csproj.CopyComplete
+D:\PROJECTS\MACROS\Заполнение служебной записки\C# version\SL Maker v2.0\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.MainForm.resources

@@ -30,6 +30,10 @@ namespace SL_Maker
         private string _CountOfSpec;
         private string _oboznachenie;
         private string _naimenovanie;
+        public UsingKompas()
+        {
+
+        }
         public void StartKompas()
         {
             if (kompas == null)
@@ -38,7 +42,7 @@ namespace SL_Maker
 			            Type t = Type.GetTypeFromProgID("KOMPASLT.Application.5");
 #else
                 Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
-
+#endif
                 Console.WriteLine("Запускаем Компас в невидимом режиме..");
                 kompas = (KompasObject)Activator.CreateInstance(t); kompas.Visible = false;
                 try { kompas = (KompasObject)Activator.CreateInstance(t); kompas.Visible = false; }

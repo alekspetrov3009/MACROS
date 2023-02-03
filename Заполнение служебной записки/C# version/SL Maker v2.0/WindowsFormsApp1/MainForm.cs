@@ -80,7 +80,6 @@ namespace WindowsFormsApp1
                 else
                     
                     paths.Add(obj);
-            //textBox1.Text = paths.EndsWith(".cdw") || paths.EndsWith(".spw");
 
             // Обработка повторяющихся путей в списке
             for (int i = 0; i < paths.Count; i++)
